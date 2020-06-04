@@ -1,0 +1,6 @@
+Ventana de login, dependiendo del usuario (cajero, administrador) redigira a las otras
+ventanas correspondientes
+ventana de cajero: ventana donde se permitira hacer el pedido del cliente y enviar el pedido para que se le 
+imprima al cocinero (la orden)
+ventana de pedidos: pedidos realizandose y ultimos 5 pedidos completados.
+
