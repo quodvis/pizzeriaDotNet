@@ -11,6 +11,7 @@ namespace Caja
         public Cajero(string nombre, int telefono) : base(nombre, telefono)
         {
             Console.WriteLine("holaanoterusanoteurasoneurt");
+            Console.WriteLine("holaa");
         }
     }
 }
