@@ -8,14 +8,11 @@ C:\Users\Santiago\Documents\GitHub\pizzeriaDotNet\Caja\bin\Debug\Caja.exe
 C:\Users\Santiago\Documents\GitHub\pizzeriaDotNet\Caja\bin\Debug\Caja.pdb
 C:\Users\Santiago\Documents\GitHub\pizzeriaDotNet\Caja\obj\Debug\Caja.exe
 C:\Users\Santiago\Documents\GitHub\pizzeriaDotNet\Caja\obj\Debug\Caja.pdb
-C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.csprojAssemblyReference.cache
-C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.LoginForm.resources
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.FormCaja.resources
+C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.LoginForm.resources
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.Properties.Resources.resources
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.csproj.GenerateResource.cache
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.csproj.CoreCompileInputs.cache
-C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.exe
-C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.pdb
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\Caja.exe.config
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\Caja.exe
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\Caja.pdb
@@ -24,3 +21,6 @@ C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\EntityFramework.SqlSer
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\EntityFramework.xml
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.csproj.CopyComplete
+C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.exe
+C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.pdb
+C:\Users\dafs_\source\repos\pizzeriaDotNet\Caja\obj\Debug\Caja.csprojAssemblyReference.cache

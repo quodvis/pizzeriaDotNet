@@ -12,21 +12,24 @@ namespace Caja
 {
     public partial class FormCaja : Form
     {
+        private int _costoPizzas;
+        private int _costoBebidas;
+        private int _total;
+        DataTable data = new DataTable();
         public FormCaja()
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();            
         }
 
         private void FormCaja_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'pizzeriaDBDataSet.Producto' Puede moverla o quitarla según sea necesario.
-            this.productoTableAdapter.Fill(this.pizzeriaDBDataSet.Producto);
-
+        {   
+            dataGridViewTotal.DataSource = data;
+            data.Columns.Add("Total");
+            data.Rows.Add("");
         }
 
         private void checkedListBoxBebidas_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -37,6 +40,22 @@ namespace Caja
                 checkedListBoxBebidas.SetItemChecked(checkedListBoxBebidas.CheckedIndices[0], false);
                 checkedListBoxBebidas.ItemCheck += checkedListBoxBebidas_ItemCheck;
             }
+            switch (checkedListBoxBebidas.SelectedIndex)
+            {
+                case 0:
+                    _costoBebidas = 1500;
+                    break;
+                case 1:
+                    _costoBebidas = 5000;
+                    break;
+                default:
+                    _costoBebidas = 0;
+                    break;
+            }
+            _costoBebidas = (textBoxCantidadBebidas.Text == "Cantidad") ? 0 : _costoBebidas * int.Parse(textBoxCantidadBebidas.Text);            
+            _total = _costoBebidas + _costoPizzas;
+            data.Rows.Clear();
+            data.Rows.Add(_total);
         }
 
         private void checkedListBoxPizzas_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -46,7 +65,26 @@ namespace Caja
                 checkedListBoxPizzas.ItemCheck -= checkedListBoxPizzas_ItemCheck;
                 checkedListBoxPizzas.SetItemChecked(checkedListBoxPizzas.CheckedIndices[0], false);
                 checkedListBoxPizzas.ItemCheck += checkedListBoxPizzas_ItemCheck;
+            }            
+            switch (checkedListBoxPizzas.SelectedIndex)
+            {
+                case 0:
+                    _costoPizzas = 22000;
+                    break;
+                case 1:
+                    _costoPizzas = 12000;
+                    break;
+                case 2:
+                    _costoPizzas = 8000;
+                    break;
+                default:
+                    _costoPizzas = 0;
+                    break;
             }
+            _costoPizzas = (textBoxCantidad.Text == "Cantidad") ? 0 : _costoPizzas * int.Parse(textBoxCantidad.Text);            
+            _total = _costoPizzas + _costoBebidas;
+            data.Rows.Clear();
+            data.Rows.Add(_total);            
         }
 
         private void textBoxCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -97,6 +135,17 @@ namespace Caja
                 textBoxCantidadBebidas.Text = "Cantidad";
                 textBoxCantidadBebidas.ForeColor = Color.Silver;
             }
+        }
+
+        private void buttonAgregarPedido_Click(object sender, EventArgs e)
+        {
+            LinqProductoDataContext dataContext = new LinqProductoDataContext();
+            Producto pizza = new Producto();
+            pizza.nombre = "";
+            pizza.precio = 22000;
+            pizza.cantidad = 1;
+            dataContext.Producto.InsertOnSubmit(pizza);
+            dataContext.SubmitChanges();
         }
     }
 }

@@ -11,9 +11,9 @@ CREATE TABLE Cajero(
 	pass VARCHAR(50) NOT NULL,
 	PRIMARY KEY(rut)
 );
-
+USE PizzeriaDB;
 CREATE TABLE Producto(
-	id INT NOT NULL,
+	id INT NOT NULL IDENTITY (1,1),
 	nombre VARCHAR(50) NOT NULL,
 	precio FLOAT NOT NULL DEFAULT 0,
 	cantidad INT NOT NULL DEFAULT 0,
@@ -31,4 +31,5 @@ CREATE TABLE Venta(
 	FOREIGN KEY(idCliente) REFERENCES Cliente(phone),
 	PRIMARY KEY(fecha)
 );
+drop table Producto;
 insert into Producto values (1,'Familiar',22000,1);

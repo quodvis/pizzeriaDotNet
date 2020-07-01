@@ -34,17 +34,13 @@
             this.labelPizzaHat = new System.Windows.Forms.Label();
             this.labelPizzas = new System.Windows.Forms.Label();
             this.labelBebidas = new System.Windows.Forms.Label();
-            this.pizzeriaDBDataSet = new Caja.PizzeriaDBDataSet();
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productoTableAdapter = new Caja.PizzeriaDBDataSetTableAdapters.ProductoTableAdapter();
             this.buttonAgregarPedido = new System.Windows.Forms.Button();
-            this.labelTotal = new System.Windows.Forms.Label();
             this.checkedListBoxPizzas = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxBebidas = new System.Windows.Forms.CheckedListBox();
             this.textBoxCantidad = new System.Windows.Forms.TextBox();
             this.textBoxCantidadBebidas = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzeriaDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,10 +56,22 @@
             // 
             // dataGridViewTotal
             // 
+            this.dataGridViewTotal.AllowUserToAddRows = false;
+            this.dataGridViewTotal.AllowUserToDeleteRows = false;
+            this.dataGridViewTotal.AllowUserToResizeColumns = false;
+            this.dataGridViewTotal.AllowUserToResizeRows = false;
+            this.dataGridViewTotal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewTotal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewTotal.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dataGridViewTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTotal.Location = new System.Drawing.Point(72, 246);
+            this.dataGridViewTotal.Location = new System.Drawing.Point(72, 247);
             this.dataGridViewTotal.Name = "dataGridViewTotal";
-            this.dataGridViewTotal.Size = new System.Drawing.Size(129, 30);
+            this.dataGridViewTotal.ReadOnly = true;
+            this.dataGridViewTotal.RowHeadersVisible = false;
+            this.dataGridViewTotal.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTotal.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dataGridViewTotal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridViewTotal.Size = new System.Drawing.Size(65, 47);
             this.dataGridViewTotal.TabIndex = 2;
             // 
             // labelPizzaHat
@@ -93,19 +101,9 @@
             this.labelBebidas.TabIndex = 5;
             this.labelBebidas.Text = "Bebidas";
             // 
-            // pizzeriaDBDataSet
-            // 
-            this.pizzeriaDBDataSet.DataSetName = "PizzeriaDBDataSet";
-            this.pizzeriaDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // productoBindingSource
             // 
             this.productoBindingSource.DataMember = "Producto";
-            this.productoBindingSource.DataSource = this.pizzeriaDBDataSet;
-            // 
-            // productoTableAdapter
-            // 
-            this.productoTableAdapter.ClearBeforeFill = true;
             // 
             // buttonAgregarPedido
             // 
@@ -115,15 +113,7 @@
             this.buttonAgregarPedido.TabIndex = 11;
             this.buttonAgregarPedido.Text = "Agregar Pedido";
             this.buttonAgregarPedido.UseVisualStyleBackColor = true;
-            // 
-            // labelTotal
-            // 
-            this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(35, 246);
-            this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(31, 13);
-            this.labelTotal.TabIndex = 12;
-            this.labelTotal.Text = "Total";
+            this.buttonAgregarPedido.Click += new System.EventHandler(this.buttonAgregarPedido_Click);
             // 
             // checkedListBoxPizzas
             // 
@@ -134,7 +124,7 @@
             "Familiar $22.000",
             "Mediana $12.000",
             "Individual $8.000"});
-            this.checkedListBoxPizzas.Location = new System.Drawing.Point(72, 100);
+            this.checkedListBoxPizzas.Location = new System.Drawing.Point(72, 126);
             this.checkedListBoxPizzas.Name = "checkedListBoxPizzas";
             this.checkedListBoxPizzas.Size = new System.Drawing.Size(110, 49);
             this.checkedListBoxPizzas.TabIndex = 18;
@@ -148,7 +138,7 @@
             this.checkedListBoxBebidas.Items.AddRange(new object[] {
             "Individual $1.500",
             "Familiar $5.000"});
-            this.checkedListBoxBebidas.Location = new System.Drawing.Point(287, 100);
+            this.checkedListBoxBebidas.Location = new System.Drawing.Point(287, 126);
             this.checkedListBoxBebidas.Name = "checkedListBoxBebidas";
             this.checkedListBoxBebidas.Size = new System.Drawing.Size(111, 34);
             this.checkedListBoxBebidas.TabIndex = 20;
@@ -157,7 +147,7 @@
             // textBoxCantidad
             // 
             this.textBoxCantidad.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxCantidad.Location = new System.Drawing.Point(72, 155);
+            this.textBoxCantidad.Location = new System.Drawing.Point(72, 100);
             this.textBoxCantidad.MaxLength = 2;
             this.textBoxCantidad.Name = "textBoxCantidad";
             this.textBoxCantidad.Size = new System.Drawing.Size(51, 20);
@@ -172,7 +162,7 @@
             // textBoxCantidadBebidas
             // 
             this.textBoxCantidadBebidas.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBoxCantidadBebidas.Location = new System.Drawing.Point(287, 155);
+            this.textBoxCantidadBebidas.Location = new System.Drawing.Point(287, 100);
             this.textBoxCantidadBebidas.MaxLength = 2;
             this.textBoxCantidadBebidas.Name = "textBoxCantidadBebidas";
             this.textBoxCantidadBebidas.Size = new System.Drawing.Size(51, 20);
@@ -192,7 +182,6 @@
             this.Controls.Add(this.textBoxCantidad);
             this.Controls.Add(this.checkedListBoxBebidas);
             this.Controls.Add(this.checkedListBoxPizzas);
-            this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.buttonAgregarPedido);
             this.Controls.Add(this.labelBebidas);
             this.Controls.Add(this.labelPizzas);
@@ -204,7 +193,6 @@
             this.Text = "Caja";
             this.Load += new System.EventHandler(this.FormCaja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pizzeriaDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -218,11 +206,8 @@
         private System.Windows.Forms.Label labelPizzaHat;
         private System.Windows.Forms.Label labelPizzas;
         private System.Windows.Forms.Label labelBebidas;
-        private PizzeriaDBDataSet pizzeriaDBDataSet;
         private System.Windows.Forms.BindingSource productoBindingSource;
-        private PizzeriaDBDataSetTableAdapters.ProductoTableAdapter productoTableAdapter;
         private System.Windows.Forms.Button buttonAgregarPedido;
-        private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.CheckedListBox checkedListBoxPizzas;
         private System.Windows.Forms.CheckedListBox checkedListBoxBebidas;
         private System.Windows.Forms.TextBox textBoxCantidad;
