@@ -33,3 +33,9 @@ CREATE TABLE Venta(
 );
 drop table Producto;
 insert into Producto values (1,'Familiar',22000,1);
+use PizzeriaDB;
+select * from Producto;
+--eliminar todos los productos de la tabla
+delete from Producto;
+--reiniciar el indice
+DBCC CHECKIDENT (Producto, RESEED,0);

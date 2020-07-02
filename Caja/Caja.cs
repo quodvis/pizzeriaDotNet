@@ -12,54 +12,36 @@ namespace Caja
 {
     public partial class FormCaja : Form
     {
-        private int _costoPizzas;
-        private int _costoBebidas;
-        private int _total;
+        private double _totalRecaudado = 0;
+        private double _total;
         DataTable data = new DataTable();
+        private Producto _pizza = new Producto();
+        private Producto _bebida = new Producto();
+        LinqProductoDataContext dataContext = new LinqProductoDataContext();
         public FormCaja()
         {
             InitializeComponent();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();            
+            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea cerrar caja?", "Cerrar Caja", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Caja Cerrada \n Total recaudado: $" + _totalRecaudado.ToString());
+                this.Close();
+            }
         }
-
         private void FormCaja_Load(object sender, EventArgs e)
         {   
             dataGridViewTotal.DataSource = data;
             data.Columns.Add("Total");
             data.Rows.Add("");
         }
-
-        private void checkedListBoxBebidas_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (e.NewValue == CheckState.Checked && checkedListBoxBebidas.CheckedItems.Count > 0)
-            {
-                checkedListBoxBebidas.ItemCheck -= checkedListBoxBebidas_ItemCheck;
-                checkedListBoxBebidas.SetItemChecked(checkedListBoxBebidas.CheckedIndices[0], false);
-                checkedListBoxBebidas.ItemCheck += checkedListBoxBebidas_ItemCheck;
-            }
-            switch (checkedListBoxBebidas.SelectedIndex)
-            {
-                case 0:
-                    _costoBebidas = 1500;
-                    break;
-                case 1:
-                    _costoBebidas = 5000;
-                    break;
-                default:
-                    _costoBebidas = 0;
-                    break;
-            }
-            _costoBebidas = (textBoxCantidadBebidas.Text == "Cantidad") ? 0 : _costoBebidas * int.Parse(textBoxCantidadBebidas.Text);            
-            _total = _costoBebidas + _costoPizzas;
-            data.Rows.Clear();
-            data.Rows.Add(_total);
-        }
-
         private void checkedListBoxPizzas_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            _pizza.nombre = null;
+            _pizza.precio = 0;
+            _pizza.cantidad = 0;
             if (e.NewValue == CheckState.Checked && checkedListBoxPizzas.CheckedItems.Count > 0)
             {
                 checkedListBoxPizzas.ItemCheck -= checkedListBoxPizzas_ItemCheck;
@@ -69,20 +51,23 @@ namespace Caja
             switch (checkedListBoxPizzas.SelectedIndex)
             {
                 case 0:
-                    _costoPizzas = 22000;
+                    _pizza.nombre = "Pizza Familiar";
+                    _pizza.precio = 22000;
                     break;
                 case 1:
-                    _costoPizzas = 12000;
+                    _pizza.nombre = "Pizza Mediana";
+                    _pizza.precio = 12000;
                     break;
                 case 2:
-                    _costoPizzas = 8000;
+                    _pizza.nombre = "Pizza Individual";
+                    _pizza.precio = 8000;
                     break;
                 default:
-                    _costoPizzas = 0;
+                    _pizza.precio = 0;
                     break;
             }
-            _costoPizzas = (textBoxCantidad.Text == "Cantidad") ? 0 : _costoPizzas * int.Parse(textBoxCantidad.Text);            
-            _total = _costoPizzas + _costoBebidas;
+            _pizza.cantidad = (textBoxCantidad.Text == "Cantidad") ? 0 : int.Parse(textBoxCantidad.Text);
+            _total = (_pizza.precio * _pizza.cantidad) + (_bebida.precio * _bebida.cantidad);
             data.Rows.Clear();
             data.Rows.Add(_total);            
         }
@@ -110,7 +95,38 @@ namespace Caja
             {
                 textBoxCantidad.Text = "Cantidad";
                 textBoxCantidad.ForeColor = Color.Silver;
+                _pizza.cantidad = 0;
             }
+        }
+        private void checkedListBoxBebidas_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            _bebida.nombre = null;
+            _bebida.precio = 0;
+            _bebida.cantidad = 0;
+            if (e.NewValue == CheckState.Checked && checkedListBoxBebidas.CheckedItems.Count > 0)
+            {
+                checkedListBoxBebidas.ItemCheck -= checkedListBoxBebidas_ItemCheck;
+                checkedListBoxBebidas.SetItemChecked(checkedListBoxBebidas.CheckedIndices[0], false);
+                checkedListBoxBebidas.ItemCheck += checkedListBoxBebidas_ItemCheck;
+            }
+            switch (checkedListBoxBebidas.SelectedIndex)
+            {
+                case 0:
+                    _bebida.nombre = "Bebida Individual";
+                    _bebida.precio = 1500;
+                    break;
+                case 1:
+                    _bebida.nombre = "Bebida Familiar";
+                    _bebida.precio = 5000;
+                    break;
+                default:
+                    _bebida.precio = 0;
+                    break;
+            }
+            _bebida.cantidad = (textBoxCantidadBebidas.Text == "Cantidad") ? 0 : int.Parse(textBoxCantidadBebidas.Text);
+            _total = (_pizza.precio * _pizza.cantidad) + (_bebida.precio * _bebida.cantidad);
+            data.Rows.Clear();
+            data.Rows.Add(_total);
         }
         private void textBoxCantidadBebidas_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -134,18 +150,37 @@ namespace Caja
             {
                 textBoxCantidadBebidas.Text = "Cantidad";
                 textBoxCantidadBebidas.ForeColor = Color.Silver;
+                _bebida.cantidad = 0;
+
             }
         }
-
         private void buttonAgregarPedido_Click(object sender, EventArgs e)
         {
-            LinqProductoDataContext dataContext = new LinqProductoDataContext();
-            Producto pizza = new Producto();
-            pizza.nombre = "";
-            pizza.precio = 22000;
-            pizza.cantidad = 1;
-            dataContext.Producto.InsertOnSubmit(pizza);
-            dataContext.SubmitChanges();
+            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea agregar pedido?","Agregar Pedido", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _pizza.nombre = (_pizza.cantidad == 0) ? null : _pizza.nombre;
+                _bebida.nombre = (_bebida.cantidad == 0) ? null : _bebida.nombre;
+                LinqProductoDataContext dataContext = new LinqProductoDataContext();
+                if (_pizza.nombre != null && _bebida.nombre != null)
+                {
+                    dataContext.Producto.InsertOnSubmit(_pizza);
+                    dataContext.Producto.InsertOnSubmit(_bebida);
+                }
+                else if (_pizza.nombre != null)
+                    dataContext.Producto.InsertOnSubmit(_pizza);
+                else if (_bebida.nombre != null)
+                    dataContext.Producto.InsertOnSubmit(_bebida);
+                else
+                {
+                    MessageBox.Show("Producto o Cantidad no seleccionado");
+                    return;
+                }
+                _totalRecaudado += (_pizza.precio * _pizza.cantidad) + (_bebida.precio * _bebida.cantidad);                
+                dataContext.SubmitChanges();
+                dataContext.Dispose();
+                MessageBox.Show("Pedido Agregado");
+            }            
         }
     }
 }

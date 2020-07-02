@@ -20,8 +20,7 @@ namespace Caja
 
         private void BotonLogin_Click(object sender, EventArgs e)
         {
-            //if(textBoxUsuario.Text.Equals("CajeroAdm") && textBoxPass.Text.Equals("HnmX2020!"))
-            if(textBoxUsuario.Text.Equals(""))
+            if(textBoxUsuario.Text.Equals("CajeroAdm") && textBoxPass.Text.Equals("HnmX2020!"))
             {
                 FormCaja caja = new FormCaja();
                 this.Hide();

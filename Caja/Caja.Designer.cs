@@ -40,6 +40,7 @@
             this.checkedListBoxBebidas = new System.Windows.Forms.CheckedListBox();
             this.textBoxCantidad = new System.Windows.Forms.TextBox();
             this.textBoxCantidadBebidas = new System.Windows.Forms.TextBox();
+            this.labelTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             this.dataGridViewTotal.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewTotal.BackgroundColor = System.Drawing.SystemColors.Menu;
             this.dataGridViewTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTotal.ColumnHeadersVisible = false;
             this.dataGridViewTotal.Location = new System.Drawing.Point(72, 247);
             this.dataGridViewTotal.Name = "dataGridViewTotal";
             this.dataGridViewTotal.ReadOnly = true;
@@ -71,15 +73,16 @@
             this.dataGridViewTotal.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTotal.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridViewTotal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewTotal.Size = new System.Drawing.Size(65, 47);
+            this.dataGridViewTotal.Size = new System.Drawing.Size(65, 21);
             this.dataGridViewTotal.TabIndex = 2;
             // 
             // labelPizzaHat
             // 
             this.labelPizzaHat.AutoSize = true;
-            this.labelPizzaHat.Location = new System.Drawing.Point(203, 9);
+            this.labelPizzaHat.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPizzaHat.Location = new System.Drawing.Point(122, 9);
             this.labelPizzaHat.Name = "labelPizzaHat";
-            this.labelPizzaHat.Size = new System.Drawing.Size(76, 13);
+            this.labelPizzaHat.Size = new System.Drawing.Size(227, 37);
             this.labelPizzaHat.TabIndex = 3;
             this.labelPizzaHat.Text = "Pizza Hat SPA";
             // 
@@ -173,11 +176,21 @@
             this.textBoxCantidadBebidas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCantidadBebidas_KeyPress);
             this.textBoxCantidadBebidas.Leave += new System.EventHandler(this.textBoxCantidadBebidas_Leave);
             // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Location = new System.Drawing.Point(31, 247);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(34, 13);
+            this.labelTotal.TabIndex = 23;
+            this.labelTotal.Text = "Total:";
+            // 
             // FormCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 322);
+            this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.textBoxCantidadBebidas);
             this.Controls.Add(this.textBoxCantidad);
             this.Controls.Add(this.checkedListBoxBebidas);
@@ -212,5 +225,6 @@
         private System.Windows.Forms.CheckedListBox checkedListBoxBebidas;
         private System.Windows.Forms.TextBox textBoxCantidad;
         private System.Windows.Forms.TextBox textBoxCantidadBebidas;
+        private System.Windows.Forms.Label labelTotal;
     }
 }
